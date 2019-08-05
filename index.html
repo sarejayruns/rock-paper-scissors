@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <script>
+            let losePBR = "You lost the round! Paper beats Rock";
+            let winPBR = "You win the round! Paper beats Rock";
+            let winRBS = "You win the round! Rock beats Scissors";
+            let loseRBS = "You lost! Rock beats Scissors";
+            let winSBP = "You win the round! Scissors beats Paper";
+            let loseSBP = "You lost the round! Scissors beats Paper";
+            let tie = "It's a Tie!"; 
+
+            function playerPlay (){
+                let input = prompt("Please enter Rock, Scissors or Paper");
+                input = input.toLowerCase();
+                return input;
+            }
+
+            function computerPlay() {
+                let min = 1;
+                let max = 4;
+                let random = Math.floor(Math.random() * (+max - +min)) + +min;
+                if (random == 1) {
+                    return "Rock";
+                }
+                else if (random ==2) {
+                    return "Paper";
+                }
+                else {
+                    return "Scissors";
+                }
+                
+            }
+
+            function playRound () {
+                let playerSelection = playerPlay();        
+                let computerSelection = computerPlay();
+                if (playerSelection == "rock") {
+                    switch(playerSelection == "rock"){
+                        case (computerSelection == "Paper"):
+                        alert (losePBR);
+                        return losePBR;
+                        break;
+                        case (computerSelection == "Scissors"):
+                        alert (winRBS)
+                        return winRBS;
+                        break;
+                        default:
+                        alert(tie);
+                        return tie;
+                    }
+                }
+                else if (playerSelection == "paper"){
+                    switch(playerSelection == "paper"){
+                        case (computerSelection == "Rock"):
+                        alert (winPBR);
+                        return winPBR;
+                        break;
+                        case (computerSelection == "Scissors"):
+                        alert (SBP);
+                        return loseSBP;
+                        break;
+                        default:
+                        alert(tie);
+                        return tie;
+                    }
+                }
+                else if (playerSelection == "scissors"){
+                    switch(playerSelection == "scissors"){
+                        case (computerSelection == "Rock"):
+                        alert(loseRBS);
+                        return loseRBS;
+                        break;
+                        case (computerSelection == "Paper"):
+                        alert(winSBP);
+                        return winSBP;
+                        break;
+                        default:
+                        alert(tie);
+                        return tie;
+                    }
+                }
+                else {
+                    return "You did not enter Rock, Paper or Scissors"
+                }
+            }
+
+            function game() {
+                let i;
+                let playerScore = 0;
+                let computerScore = 0;
+                let result;
+
+                for (i=0; i<5; i++) {
+                    let thisRound = playRound();
+                    if ((thisRound == winPBR) || (thisRound == winSBP) || (thisRound == winRBS)) {
+                       playerScore++;
+                    }
+                    else if ((thisRound == losePBR) || (thisRound == loseSBP) || (thisRound == loseRBS)) {
+                        computerScore++;
+                        }
+                    //console.log (thisRound);
+                    console.log ("Your score is")
+                    console.log(playerScore);
+                    console.log ("The computer's score is")
+                    console.log (computerScore);
+                }
+                if (playerScore > computerScore) {
+                    result = "You win the whole game!"
+                }
+                else if (playerScore < computerScore) {
+                    result = "You lose the whole game!"
+                }
+                else {
+                    result = "It's a tie!"
+                }
+                console.log (result);
+                return result;
+            }
+
+
+            console.log (game())
+        </script>
+    </body>
+</html>
