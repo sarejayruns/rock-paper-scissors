@@ -10,10 +10,11 @@
             let winSBP = "You win the round! Scissors beats Paper";
             let loseSBP = "You lost the round! Scissors beats Paper";
             let tie = "It's a Tie!"; 
+            let playerScore = 0;
+            let computerScore = 0;
 
-            function playerPlay (){
-                let input = prompt("Please enter Rock, Scissors or Paper");
-                input = input.toLowerCase();
+            function playerPlay() {
+                let input = document.getElementById("btnR").value;
                 return input;
             }
 
@@ -40,57 +41,61 @@
                     switch(playerSelection == "rock"){
                         case (computerSelection == "Paper"):
                         alert (losePBR);
-                        return losePBR;
+                        computerScore++;
                         break;
                         case (computerSelection == "Scissors"):
                         alert (winRBS)
-                        return winRBS;
+                        playerScore++;
                         break;
                         default:
                         alert(tie);
-                        return tie;
                     }
                 }
                 else if (playerSelection == "paper"){
                     switch(playerSelection == "paper"){
                         case (computerSelection == "Rock"):
                         alert (winPBR);
-                        return winPBR;
+                        playerScore++;
                         break;
                         case (computerSelection == "Scissors"):
                         alert (loseSBP);
-                        return loseSBP;
+                        computerScore++;
                         break;
                         default:
                         alert(tie);
-                        return tie;
                     }
                 }
                 else if (playerSelection == "scissors"){
                     switch(playerSelection == "scissors"){
                         case (computerSelection == "Rock"):
                         alert(loseRBS);
-                        return loseRBS;
+                        computerScore++;
                         break;
                         case (computerSelection == "Paper"):
                         alert(winSBP);
-                        return winSBP;
+                        playerScore++;
                         break;
                         default:
                         alert(tie);
-                        return tie;
                     }
                 }
-                else {
-                    return "You did not enter Rock, Paper or Scissors"
+                if (playerScore == 5) {
+                    alert("You win the game!");
+                    computerScore = 0;
+                    playerScore = 0;
+                }
+                else if (computerScore == 5) {
+                    alert("You lost the game!");
+                    computerScore = 0;
+                    playerScore = 0;
                 }
             }
 
-            function game() {
+/*            function game() {
                 let i;
-                let playerScore = 0;
-                let computerScore = 0;
-                let result;
+//                let playerScore = 0; TAKEN TO PLAYROUND
+//                let computerScore = 0; TAKEN TO PLAYEROUND
+                let result = [playerScore, computerScore];
 
                 for (i=0; i<5; i++) {
                     let thisRound = playRound();
@@ -100,13 +105,14 @@
                     else if ((thisRound == losePBR) || (thisRound == loseSBP) || (thisRound == loseRBS)) {
                         computerScore++;
                         }
-                    //console.log (thisRound);
+                    return playerScore;
                     console.log ("Your score is")
                     console.log(playerScore);
                     console.log ("The computer's score is")
                     console.log (computerScore);
                 }
-                if (playerScore > computerScore) {
+            */             
+/*                if (playerScore > computerScore) {
                     result = "You win the whole game!"
                 }
                 else if (playerScore < computerScore) {
@@ -114,12 +120,55 @@
                 }
                 else {
                     result = "It's a tie!"
-                }
-                return result;
-            }
+                } */
+//                return result;
+//            }
 
 
-            console.log (game())
+ //           console.log (game())      CANNOT USE GAME - BREAKS CODE AND RUNS BEFORE LOADING
+                                        // NEED TO MODIFY PLAYROUND
+
+            function runScore() {
+                document.getElementById("scorePara").innerHTML =  "Your score is " + (playerScore) + "/5. The computer's score is " + (computerScore)+"/5.";
+            };
+ 
+            const btnR = document.createElement("button");
+            const btnP = document.createElement("button");
+            const btnS = document.createElement("button");
+            btnR.id = "btnR";
+            btnR.innerHTML = "Rock";
+            btnR.setAttribute ("value", "rock");
+            btnP.id = "btnP";
+            btnP.innerHTML = "Paper";
+            btnP.setAttribute ("value", "paper");
+            btnS.id = "btnS";
+            btnS.innerHTML = "Scissors";
+            btnS.setAttribute ("value", "scissors");
+            document.body.appendChild(btnR);
+            document.body.appendChild(btnP);
+            document.body.appendChild(btnS);
+
+            document.getElementById("btnR").addEventListener("click", playRound);
+            document.getElementById("btnR").addEventListener("click", runScore);
+            document.getElementById("btnP").addEventListener("click", playRound);
+            document.getElementById("btnP").addEventListener("click", runScore);
+            document.getElementById("btnS").addEventListener("click", playRound);
+            document.getElementById("btnS").addEventListener("click", runScore);
+
+            const resultsDiv = document.createElement("div");
+            resultsDiv.id = "results";
+            document.body.appendChild(resultsDiv);
+
+            const scoreHead = document.createElement("h1");
+            const headText = document.createTextNode("Score");
+            const scorePara = document.createElement("p");
+            scorePara.id = "scorePara";
+            scoreHead.appendChild(headText);
+            resultsDiv.appendChild(scoreHead);
+            resultsDiv.appendChild(scorePara);
+
+            document.getElementById("scorePara").innerHTML =  "Your score is " + (playerScore) + "/5. The computer's score is " + (computerScore)+"/5.";
+
         </script>
     </body>
 </html>
