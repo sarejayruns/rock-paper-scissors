@@ -13,10 +13,11 @@
             let playerScore = 0;
             let computerScore = 0;
 
-            function playerPlay() {
-                let input = document.getElementById("btnR").value;
-                return input;
-            }
+            //function playerPlay() {
+                //console.log(value);
+                //let input = document.getElementById("btnR").value;
+                //return input;
+            //}
 
             function computerPlay() {
                 let min = 1;
@@ -33,9 +34,10 @@
                 }
                 
             }
-
+            
+            let input;
             function playRound () {
-                let playerSelection = playerPlay();        
+                let playerSelection = input;        
                 let computerSelection = computerPlay();
                 if (playerSelection == "rock") {
                     switch(playerSelection == "rock"){
@@ -111,10 +113,24 @@
             document.body.appendChild(btnP);
             document.body.appendChild(btnS);
 
+            document.getElementById("btnR").addEventListener("click", function() {
+                input = document.getElementById("btnR").value;
+                return input;
+            });
             document.getElementById("btnR").addEventListener("click", playRound);
             document.getElementById("btnR").addEventListener("click", runScore);
+
+            document.getElementById("btnP").addEventListener("click", function() {
+                input = document.getElementById("btnP").value;
+                return input;
+            });
             document.getElementById("btnP").addEventListener("click", playRound);
             document.getElementById("btnP").addEventListener("click", runScore);
+
+            document.getElementById("btnS").addEventListener("click", function() {
+                input = document.getElementById("btnS").value;
+                return input;
+            });
             document.getElementById("btnS").addEventListener("click", playRound);
             document.getElementById("btnS").addEventListener("click", runScore);
 
